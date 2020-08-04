@@ -1,24 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.scss";
+import { Route } from "react-router-dom";
+import { Landing, Modal } from "./components";
+import Home from "./components/Home/Home";
 
 function App() {
+  // const location = useLocation();
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Modal />
+      <Route path="/" exact render={() => <Landing />} />
+      <Route path="/site" exact render={() => <Home />} />
+      <Route path="/site/start" exact render={() => <Home />} />
+      <Route path="/site/deploy/:id" exact render={() => <Home />} />
     </div>
   );
 }
