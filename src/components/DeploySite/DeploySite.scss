@@ -70,7 +70,8 @@
     }
   }
   .deploy-logs-container {
-    min-height: 300px;
+    max-height: 250px;
+    overflow-y: auto;
     background-color: var(--black);
     border-bottom-right-radius: 8px;
     border-bottom-left-radius: 8px;

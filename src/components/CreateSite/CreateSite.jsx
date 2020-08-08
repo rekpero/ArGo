@@ -10,15 +10,29 @@ function CreateSite() {
   const { setCurrentSiteDeployConfig } = useContext(ActionContext);
 
   const [framework, setFramework] = useState("react");
-  const [repositoryLink, setRepositoryLink] = useState("");
-  const [repositoryBranch, setRepositoryBranch] = useState("");
-  const [buildCommand, setBuildCommand] = useState("");
-  const [publishDir, setPublishDir] = useState("");
+  const [repositoryLink, setRepositoryLink] = useState(
+    "https://github.com/rekpero/arweave-neighbour-tweet-react.git"
+  );
+  const [repositoryBranch, setRepositoryBranch] = useState("dev");
+  const [buildCommand, setBuildCommand] = useState("npm run build");
+  const [packageManager, setPackageManager] = useState("npm");
+  const [publishDir, setPublishDir] = useState("build");
 
   const frameworkOptions = [
     {
       value: "react",
       label: "React App",
+    },
+  ];
+
+  const packageManagers = [
+    {
+      value: "npm",
+      label: "NPM",
+    },
+    {
+      value: "yarn",
+      label: "Yarn",
     },
   ];
 
@@ -33,6 +47,7 @@ function CreateSite() {
       framework,
       repositoryLink,
       repositoryBranch,
+      packageManager,
       buildCommand,
       publishDir,
     };
@@ -53,7 +68,7 @@ function CreateSite() {
           <div className="create-site-form-whole-container">
             <h3 className="create-site-form-header">Deploy settings</h3>
             <div className="create-site-form-container">
-              <label className="create-site-form-label">Repository Link</label>
+              <label className="create-site-form-label">Repository link</label>
               <input
                 type="text"
                 placeholder="Enter repository link"
@@ -92,10 +107,24 @@ function CreateSite() {
               </select>
             </div>
             <div className="create-site-form-container">
+              <label className="create-site-form-label">Package manager</label>
+              <select
+                className="create-site-form-input select-form-input"
+                value={packageManager}
+                onChange={(e) => setPackageManager(e.target.value)}
+              >
+                {packageManagers.map((option) => (
+                  <option value={option.value} key={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="create-site-form-container">
               <label className="create-site-form-label">Build command</label>
               <input
                 type="text"
-                placeholder="Enter build command"
+                placeholder="e.g. npm run build or yarn build"
                 className="create-site-form-input"
                 value={buildCommand}
                 onChange={(e) => setBuildCommand(e.target.value)}
@@ -107,7 +136,7 @@ function CreateSite() {
               </label>
               <input
                 type="text"
-                placeholder="Enter publish directory"
+                placeholder="e.g. build or dist"
                 className="create-site-form-input"
                 value={publishDir}
                 onChange={(e) => setPublishDir(e.target.value)}

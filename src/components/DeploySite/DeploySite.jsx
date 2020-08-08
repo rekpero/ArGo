@@ -24,6 +24,9 @@ function DeploySite() {
         url: currentSiteDeployConfig.repositoryLink,
         topic: currentSiteDeployConfig.id,
         branch: currentSiteDeployConfig.repositoryBranch,
+        packageManager: currentSiteDeployConfig.packageManager,
+        buildCommand: currentSiteDeployConfig.buildCommand,
+        buildDirectory: currentSiteDeployConfig.publishDir,
       }).then((data) => {
         console.log(data);
         if (data.deployed) {
