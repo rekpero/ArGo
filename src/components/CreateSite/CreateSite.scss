@@ -17,12 +17,20 @@
     padding: 2rem 10rem;
 
     .create-site-card-header {
-      .create-site-card-header-title {
-        margin: 0px;
+      display: flex;
+      align-items: center;
+      .go-back {
+        cursor: pointer;
       }
+      .create-site-card-header-content {
+        margin-left: 1rem;
+        .create-site-card-header-title {
+          margin: 0px;
+        }
 
-      .create-site-card-header-description {
-        margin: 0px;
+        .create-site-card-header-description {
+          margin: 0px;
+        }
       }
     }
 

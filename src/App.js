@@ -12,6 +12,7 @@ function App() {
       <Modal />
       <Route path="/" exact render={() => <Landing />} />
       <Route path="/site" exact render={() => <Home />} />
+      <Route path="/site/view/:id" exact render={() => <Home />} />
       <Route path="/site/start" exact render={() => <Home />} />
       <Route path="/site/deploy/:id" exact render={() => <Home />} />
     </div>

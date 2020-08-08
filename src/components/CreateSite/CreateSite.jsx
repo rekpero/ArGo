@@ -3,6 +3,7 @@ import React, { useState, useContext } from "react";
 import "./CreateSite.scss";
 import { useHistory } from "react-router-dom";
 import { ActionContext } from "../../hooks";
+import { ArrowLeft } from "react-feather";
 
 function CreateSite() {
   const history = useHistory();
@@ -11,11 +12,11 @@ function CreateSite() {
 
   const [framework, setFramework] = useState("react");
   const [repositoryLink, setRepositoryLink] = useState(
-    "https://github.com/rekpero/arweave-neighbour-tweet-react.git"
+    "https://github.com/rekpero/weavy.git"
   );
   const [repositoryBranch, setRepositoryBranch] = useState("dev");
-  const [buildCommand, setBuildCommand] = useState("npm run build");
-  const [packageManager, setPackageManager] = useState("npm");
+  const [buildCommand, setBuildCommand] = useState("yarn build");
+  const [packageManager, setPackageManager] = useState("yarn");
   const [publishDir, setPublishDir] = useState("build");
 
   const frameworkOptions = [
@@ -59,10 +60,15 @@ function CreateSite() {
     <div className="CreateSite">
       <div className="card-container">
         <div className="create-site-card-header">
-          <h2 className="create-site-card-header-title">Create a new site</h2>
-          <p className="create-site-card-header-description">
-            From zero to hero in just one step
-          </p>
+          <div className="go-back" onClick={(e) => history.goBack()}>
+            <ArrowLeft />
+          </div>
+          <div className="create-site-card-header-content">
+            <h2 className="create-site-card-header-title">Create a new site</h2>
+            <p className="create-site-card-header-description">
+              From zero to hero in just one step
+            </p>
+          </div>
         </div>
         <div className="create-site-form">
           <div className="create-site-form-whole-container">

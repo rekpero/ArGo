@@ -1,5 +1,5 @@
 import React, { createContext, useMemo } from "react";
-import { ArweaveService } from "../services";
+import { ArweaveService, APIService } from "../services";
 import { useHistory } from "react-router-dom";
 
 export const ActionContext = createContext();
@@ -47,6 +47,16 @@ export const AppProvider = (props) => {
             ...prevState,
             currentSiteDeployLogs: action.currentSiteDeployLogs,
           };
+        case "SET_ALL_SITES":
+          return {
+            ...prevState,
+            allSites: action.allSites,
+          };
+        case "SET_CURRENT_SITE_VIEW_CONFIG":
+          return {
+            ...prevState,
+            currentSiteViewConfig: action.currentSiteViewConfig,
+          };
         default:
       }
     },
@@ -58,6 +68,8 @@ export const AppProvider = (props) => {
       modalConfig: {},
       currentSiteDeployConfig: null,
       currentSiteDeployLogs: [],
+      allSites: [],
+      currentSiteViewConfig: null,
     }
   );
 
@@ -113,6 +125,19 @@ export const AppProvider = (props) => {
         dispatch({
           type: "SET_CURRENT_SITE_DEPLOY_LOGS",
           currentSiteDeployLogs: logs,
+        });
+      },
+      getAllSites: async (walletAddress) => {
+        const allSites = await APIService.getAllSites(walletAddress);
+        dispatch({
+          type: "SET_ALL_SITES",
+          allSites,
+        });
+      },
+      setCurrentSiteViewConfig: (config) => {
+        dispatch({
+          type: "SET_CURRENT_SITE_VIEW_CONFIG",
+          currentSiteViewConfig: config,
         });
       },
     }),

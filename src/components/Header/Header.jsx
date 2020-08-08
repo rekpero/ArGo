@@ -5,7 +5,7 @@ import { ActionContext, StateContext } from "../../hooks";
 import copy from "clipboard-copy";
 import { shortenAddress } from "../../utils";
 import { Clipboard, ExternalLink, Bell } from "react-feather";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import NavBar from "../NavBar";
 
 function Header() {
@@ -30,7 +30,9 @@ function Header() {
       <div className="header-container">
         <div className="navbar-container">
           <div className="logo-container">
-            <h3 className="logo-name">permahosting.</h3>
+            <Link to="/">
+              <h3 className="logo-name">permahosting.</h3>
+            </Link>
           </div>
           <div className="user-profile-container">
             <div className="notification-container">

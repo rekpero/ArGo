@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import "./Landing.scss";
 import { ActionContext } from "../../hooks";
 import AnchorLink from "react-anchor-link-smooth-scroll";
+import { Link } from "react-router-dom";
 
 function Landing() {
   const { toggleModal } = useContext(ActionContext);
@@ -11,7 +12,9 @@ function Landing() {
       <div className="landing-container" id="home">
         <div className="header-section">
           <div className="header-bar">
-            <div className="header-app-icon">permahosting.</div>
+            <div className="header-app-icon">
+              <Link to="/">permahosting.</Link>
+            </div>
             <div className="header-action-button-container">
               <div className="header-tabs">
                 <AnchorLink href="#home">Home</AnchorLink>

@@ -11,11 +11,15 @@
       position: relative;
       align-items: center;
       .logo-container {
-        .logo-name {
-          margin: 0;
-          font-size: 32px;
-          font-weight: 800;
-          font-family: var(--appNameFont);
+        a {
+          text-decoration: none;
+          color: var(--white);
+          .logo-name {
+            margin: 0;
+            font-size: 32px;
+            font-weight: 800;
+            font-family: var(--appNameFont);
+          }
         }
       }
       .user-profile-container {

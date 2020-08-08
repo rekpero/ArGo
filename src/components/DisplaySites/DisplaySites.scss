@@ -12,12 +12,12 @@
     flex-direction: column;
     margin-top: 24px;
     min-width: 264px;
-    padding: 24px;
     min-height: 296px;
     .card-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      padding: 24px;
       .deployed-site-title {
         margin: 0px;
       }
@@ -52,6 +52,57 @@
         }
         &:active {
           background-color: var(--themeColorDark);
+        }
+      }
+    }
+
+    .card-content {
+      margin-top: 1rem;
+      .site-item {
+        display: flex;
+        align-items: center;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+
+        &:hover {
+          background-color: var(--grey1Color);
+        }
+
+        .site-item-content {
+          flex: 1;
+          .site-item-row-1 {
+            display: flex;
+            align-items: center;
+            padding: 0.25rem 0.5rem;
+            .site-item-link {
+              width: 60%;
+              font-weight: bold;
+              color: var(--themeColor);
+            }
+
+            .site-item-released {
+              font-weight: bold;
+            }
+          }
+
+          .site-item-row-2 {
+            display: flex;
+            align-items: center;
+            padding: 0.25rem 0.5rem;
+            color: var(--grey3Color);
+
+            .site-item-git {
+              width: 60%;
+              font-size: 15px;
+            }
+
+            .site-item-branch {
+              font-size: 15px;
+            }
+          }
+        }
+
+        .site-item-right {
         }
       }
     }

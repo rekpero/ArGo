@@ -40,8 +40,15 @@
           line-height: 24px;
           padding: 8px;
           text-decoration: none;
-          -webkit-transition: background-color, color 0.3s ease;
-          transition: background-color, color 0.3s ease;
+          -webkit-transition: color, color 0.3s ease;
+          transition: color, color 0.3s ease;
+
+          &:hover {
+            color: var(--white);
+          }
+        }
+        .selected {
+          color: var(--white);
         }
       }
     }

@@ -6,14 +6,17 @@ import { StateContext, ActionContext } from "../../hooks";
 import { APIService } from "../../services";
 import socketIOClient from "socket.io-client";
 import moment from "moment";
+import { animateScroll } from "react-scroll";
 
 const ENDPOINT = "http://localhost:5000";
 
 function DeploySite() {
   const { setCurrentSiteDeployLogs } = useContext(ActionContext);
-  const { currentSiteDeployConfig, currentSiteDeployLogs } = useContext(
-    StateContext
-  );
+  const {
+    currentSiteDeployConfig,
+    currentSiteDeployLogs,
+    walletAddress,
+  } = useContext(StateContext);
   const [isDeployed, setIsDeployed] = useState(false);
   const [deployedLink, setDeployedLink] = useState("");
 
@@ -27,6 +30,7 @@ function DeploySite() {
         packageManager: currentSiteDeployConfig.packageManager,
         buildCommand: currentSiteDeployConfig.buildCommand,
         buildDirectory: currentSiteDeployConfig.publishDir,
+        userAddress: walletAddress,
       }).then((data) => {
         console.log(data);
         if (data.deployed) {
@@ -54,6 +58,7 @@ function DeploySite() {
           }
         });
         setCurrentSiteDeployLogs(currentSiteDeployLogs);
+        scrollToWithContainer(currentSiteDeployLogs.length - 1);
       });
       // CLEAN UP THE EFFECT
       return () => socket.disconnect();
@@ -76,6 +81,18 @@ function DeploySite() {
       "/tree/" +
       currentSiteDeployConfig.repositoryBranch;
   }
+
+  const scrollToWithContainer = (index) => {
+    console.log(index);
+    window.scrollTo({
+      top: document.getElementById("deploy-logs-container").scrollHeight,
+      left: 0,
+      behavior: "smooth",
+    });
+    var myElement = document.getElementById(`deploy-logs-items-${index}`);
+    var topPos = myElement.offsetTop;
+    document.getElementById("deploy-logs-list").scrollTop = topPos;
+  };
 
   // console.log(currentSiteDeployLogs);
 
@@ -150,16 +167,23 @@ function DeploySite() {
             </div>
           </div>
         )}
-        <div className="card-container deploy-container">
+        <div
+          className="card-container deploy-container"
+          id="deploy-logs-container"
+        >
           <div className="card-header-title deploy-logs-card-title">
             <span className="card-header-deploy-title">Deploy Logs</span>
-            <button className="copy-to-clipboard-button">
+            {/* <button className="copy-to-clipboard-button">
               Copy to clipboard
-            </button>
+            </button> */}
           </div>
-          <div className="deploy-logs-container">
+          <div className="deploy-logs-container" id="deploy-logs-list">
             {currentSiteDeployLogs.map((currLog, i) => (
-              <div className="deploy-logs-items" key={i}>
+              <div
+                className="deploy-logs-items"
+                id={`deploy-logs-items-${i}`}
+                key={i}
+              >
                 {currLog.time}:{" "}
                 {currLog.log.indexOf("https://arweave.net/") !== -1 ? (
                   <a

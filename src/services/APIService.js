@@ -13,4 +13,17 @@ export default class APIService {
       .then((res) => res.json())
       .catch((err) => console.log(err));
   };
+
+  static getAllSites = async (walletAddress) => {
+    console.log(walletAddress);
+    return fetch(`${ROOT_URL}/getData/`, {
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+      },
+      method: "POST",
+      body: JSON.stringify({ address: walletAddress }),
+    })
+      .then((res) => res.json())
+      .catch((err) => console.log(err));
+  };
 }
