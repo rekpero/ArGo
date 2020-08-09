@@ -13,7 +13,7 @@ function Landing() {
         <div className="header-section">
           <div className="header-bar">
             <div className="header-app-icon">
-              <Link to="/">permahosting.</Link>
+              <Link to="/">ArGo.</Link>
             </div>
             <div className="header-action-button-container">
               <div className="header-tabs">

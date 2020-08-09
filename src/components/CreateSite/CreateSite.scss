@@ -67,6 +67,24 @@
         }
       }
 
+      .fee-container {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        .fee-title {
+          font-size: 14px;
+          font-weight: 500;
+        }
+
+        .fee-value {
+          font-weight: bold;
+          margin-left: 0.5rem;
+          background-color: var(--themeColor);
+          padding: 4px 8px;
+          border-radius: 4px;
+          color: var(--white);
+        }
+      }
+
       .create-site-button {
         padding: 8px 20px;
         font-size: 0.95rem;

@@ -1,11 +1,15 @@
 import Arweave from "arweave/web";
-// import { APP_NAME, APP_VERSION } from "../utils";
+import { readContract, selectWeightedPstHolder } from "smartweave";
+
+import { APP_NAME, APP_VERSION } from "../utils";
 
 export const arweave = Arweave.init({
   host: "arweave.net",
   port: 443,
   protocol: "https",
 });
+
+const contractId = "X1Mx-u6XE_aC7_k0gFQbLlHhxMYIRhTItdHkS3hs36c";
 
 export default class ArweaveService {
   static getWalletAddress = (wallet) => {
@@ -38,23 +42,22 @@ export default class ArweaveService {
     return res;
   };
 
-  static uploadFiles = async (file, fileType, wallet) => {
-    let transaction = await arweave.createTransaction({ data: file }, wallet);
-    console.log(transaction.id);
+  static payPST = async (wallet) => {
+    const contractState = await readContract(arweave, contractId);
+    const holder = selectWeightedPstHolder(contractState.balances);
 
-    transaction.addTag("Content-Type", fileType);
+    const transaction = await arweave.createTransaction(
+      {
+        target: "NO6e9qZuAiXWhjJvGl7DYEMt90MMl1kdLwhhocQRAuY",
+        quantity: arweave.ar.arToWinston("0.01"),
+      },
+      wallet
+    );
+    transaction.addTag("App-Name", APP_NAME);
+    transaction.addTag("App-Version", APP_VERSION);
 
     await arweave.transactions.sign(transaction, wallet);
-
-    let uploader = await arweave.transactions.getUploader(transaction);
-
-    while (!uploader.isComplete) {
-      await uploader.uploadChunk();
-      console.log(
-        `${uploader.pctComplete}% complete, ${uploader.uploadedChunks}/${uploader.totalChunks}`
-      );
-    }
-    console.log(transaction.id);
+    await arweave.transactions.post(transaction);
   };
 
   static getName = async (addr) => {

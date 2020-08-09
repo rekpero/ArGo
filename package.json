@@ -19,6 +19,8 @@
     "react-scripts": "3.4.1",
     "react-scroll": "^1.8.0",
     "react-select": "^3.1.0",
+    "react-tooltip": "^4.2.8",
+    "smartweave": "https://arweave.net/AM-u4X2po-3Tx7fma3lRonCfLwrjI42IALwDL_YFXBs",
     "socket.io-client": "^2.3.0"
   },
   "scripts": {

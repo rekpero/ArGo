@@ -33,5 +33,5 @@ export function parseFileSize(pSize, si = false, dp = 1) {
   return pSize.toFixed(dp) + " " + units[u];
 }
 
-export const APP_NAME = "permamail";
-export const APP_VERSION = "0.0.3";
+export const APP_NAME = "ArGo";
+export const APP_VERSION = "0.0.1";

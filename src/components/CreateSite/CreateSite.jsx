@@ -2,13 +2,15 @@
 import React, { useState, useContext } from "react";
 import "./CreateSite.scss";
 import { useHistory } from "react-router-dom";
-import { ActionContext } from "../../hooks";
+import { ActionContext, StateContext } from "../../hooks";
 import { ArrowLeft } from "react-feather";
+import { ArweaveService } from "../../services";
 
 function CreateSite() {
   const history = useHistory();
 
   const { setCurrentSiteDeployConfig } = useContext(ActionContext);
+  const { wallet } = useContext(StateContext);
 
   const [framework, setFramework] = useState("react");
   const [repositoryLink, setRepositoryLink] = useState(
@@ -41,19 +43,24 @@ function CreateSite() {
     setFramework(selectedOption);
   };
 
-  const deployNow = () => {
-    const id = (Math.random() * 1e32).toString(36).substring(0, 10);
-    const deploySettings = {
-      id,
-      framework,
-      repositoryLink,
-      repositoryBranch,
-      packageManager,
-      buildCommand,
-      publishDir,
-    };
-    setCurrentSiteDeployConfig(deploySettings);
-    history.push(`/site/deploy/${id}`);
+  const deployNow = async () => {
+    try {
+      await ArweaveService.payPST(wallet);
+      const id = (Math.random() * 1e32).toString(36).substring(0, 10);
+      const deploySettings = {
+        id,
+        framework,
+        repositoryLink,
+        repositoryBranch,
+        packageManager,
+        buildCommand,
+        publishDir,
+      };
+      setCurrentSiteDeployConfig(deploySettings);
+      history.push(`/site/deploy/${id}`);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -148,6 +155,10 @@ function CreateSite() {
                 onChange={(e) => setPublishDir(e.target.value)}
               />
             </div>
+          </div>
+          <div className="fee-container">
+            <span className="fee-title">PST Fee:</span>
+            <span className="fee-value">0.1 AR</span>
           </div>
           <button className="create-site-button" onClick={deployNow}>
             Deploy Now

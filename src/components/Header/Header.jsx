@@ -31,7 +31,7 @@ function Header() {
         <div className="navbar-container">
           <div className="logo-container">
             <Link to="/">
-              <h3 className="logo-name">permahosting.</h3>
+              <h3 className="logo-name">ArGo.</h3>
             </Link>
           </div>
           <div className="user-profile-container">
