@@ -3,6 +3,7 @@ import "./App.scss";
 import { Route } from "react-router-dom";
 import { Landing, Modal } from "./components";
 import Home from "./components/Home/Home";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 function App() {
   // const location = useLocation();

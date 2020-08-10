@@ -57,6 +57,11 @@ export const AppProvider = (props) => {
             ...prevState,
             currentSiteViewConfig: action.currentSiteViewConfig,
           };
+        case "SET_SITE_LOADING":
+          return {
+            ...prevState,
+            sitesLoading: action.sitesLoading,
+          };
         default:
       }
     },
@@ -70,6 +75,7 @@ export const AppProvider = (props) => {
       currentSiteDeployLogs: [],
       allSites: [],
       currentSiteViewConfig: null,
+      sitesLoading: false,
     }
   );
 
@@ -128,10 +134,18 @@ export const AppProvider = (props) => {
         });
       },
       getAllSites: async (walletAddress) => {
+        dispatch({
+          type: "SET_SITE_LOADING",
+          sitesLoading: true,
+        });
         const allSites = await APIService.getAllSites(walletAddress);
         dispatch({
           type: "SET_ALL_SITES",
           allSites,
+        });
+        dispatch({
+          type: "SET_SITE_LOADING",
+          sitesLoading: false,
         });
       },
       setCurrentSiteViewConfig: (config) => {

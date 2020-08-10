@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import { ActionContext, StateContext } from "../../hooks";
 import { ArrowLeft } from "react-feather";
 import { ArweaveService } from "../../services";
+import Loader from "react-loader-spinner";
 
 function CreateSite() {
   const history = useHistory();
@@ -13,13 +14,12 @@ function CreateSite() {
   const { wallet } = useContext(StateContext);
 
   const [framework, setFramework] = useState("react");
-  const [repositoryLink, setRepositoryLink] = useState(
-    "https://github.com/rekpero/weavy.git"
-  );
-  const [repositoryBranch, setRepositoryBranch] = useState("dev");
-  const [buildCommand, setBuildCommand] = useState("yarn build");
-  const [packageManager, setPackageManager] = useState("yarn");
-  const [publishDir, setPublishDir] = useState("build");
+  const [repositoryLink, setRepositoryLink] = useState("");
+  const [repositoryBranch, setRepositoryBranch] = useState("");
+  const [buildCommand, setBuildCommand] = useState("");
+  const [packageManager, setPackageManager] = useState("nps");
+  const [publishDir, setPublishDir] = useState("");
+  const [createSiteLoader, setCreateSiteLoader] = useState(false);
 
   const frameworkOptions = [
     {
@@ -44,6 +44,7 @@ function CreateSite() {
   };
 
   const deployNow = async () => {
+    setCreateSiteLoader(true);
     try {
       await ArweaveService.payPST(wallet);
       const id = (Math.random() * 1e32).toString(36).substring(0, 10);
@@ -61,6 +62,7 @@ function CreateSite() {
     } catch (err) {
       console.log(err);
     }
+    setCreateSiteLoader(false);
   };
 
   return (
@@ -161,7 +163,17 @@ function CreateSite() {
             <span className="fee-value">0.1 AR</span>
           </div>
           <button className="create-site-button" onClick={deployNow}>
-            Deploy Now
+            {createSiteLoader ? (
+              <Loader
+                type="Oval"
+                color="#FFF"
+                height={18}
+                width={18}
+                style={{ display: "flex" }}
+              />
+            ) : (
+              "Deploy Now"
+            )}
           </button>
         </div>
       </div>

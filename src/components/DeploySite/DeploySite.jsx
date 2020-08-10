@@ -18,6 +18,7 @@ function DeploySite() {
     walletAddress,
   } = useContext(StateContext);
   const [isDeployed, setIsDeployed] = useState(false);
+  const [buildTime, setBuildTime] = useState({ min: 0, sec: 0 });
   const [deployedLink, setDeployedLink] = useState("");
 
   useEffect(() => {
@@ -35,6 +36,13 @@ function DeploySite() {
         console.log(data);
         if (data.deployed) {
           setIsDeployed(data.deployed);
+          const buildMin = Number.parseInt(
+            Number.parseInt(data.buildTime) / (1000 * 60)
+          );
+          const buildSec = Number.parseInt(
+            (Number.parseInt(data.buildTime) / 1000) % 60
+          );
+          setBuildTime({ min: buildMin, sec: buildSec });
           const arweaveLinkFilter = currentSiteDeployLogs.filter(
             (deployLog) => deployLog.log.indexOf("https://arweave.net/") !== -1
           );
@@ -158,10 +166,13 @@ function DeploySite() {
               </div>
               <div className="deploy-summary-item-info-container">
                 <div className="deploy-summary-item-info-title">
-                  Build time: 1m 52s. Total deploy time: 1m 52s
+                  Total time to Build & Deploy: {buildTime.min}m {buildTime.sec}
+                  s
                 </div>
                 <div className="deploy-summary-item-info-description">
-                  Build started at 7:49:38 PM and ended at 7:51:30 PM.
+                  Build started at {currentSiteDeployLogs[0].time} and ended at{" "}
+                  {currentSiteDeployLogs[currentSiteDeployLogs.length - 1].time}
+                  .
                 </div>
               </div>
             </div>

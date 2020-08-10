@@ -12,7 +12,15 @@
     flex-direction: column;
     margin-top: 24px;
     min-width: 264px;
-    min-height: 296px;
+    min-height: 342px;
+
+    .loader-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 342px;
+    }
     .card-header {
       display: flex;
       align-items: center;

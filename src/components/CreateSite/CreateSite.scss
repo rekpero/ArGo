@@ -110,6 +110,10 @@
         cursor: pointer;
         transition: all 0.25s linear;
         margin-top: 12px;
+        min-width: 122px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
         &:hover {
           transform: scale(1.02);
