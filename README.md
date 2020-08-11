@@ -27,4 +27,4 @@ To Run backend seperately follow the README.md
 
 # Demo Link
 To see the deomo of the ArGo you visit at:
-https://www.youtube.com/watch?v=68SwcLDteTM
+https://youtu.be/68SwcLDteTM
