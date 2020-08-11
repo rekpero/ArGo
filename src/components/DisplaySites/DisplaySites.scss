@@ -1,3 +1,12 @@
+@mixin poCentering {
+  top: 50%;
+  right: 50%;
+  bottom: 50%;
+  left: 50%;
+  position: absolute;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
 .DisplaySites {
   .card-container {
     background-color: #fff;
@@ -66,6 +75,26 @@
 
     .card-content {
       margin-top: 1rem;
+      min-height: 220px;
+      position: relative;
+
+      .no-site-container {
+        height: 200px;
+        width: 200px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: var(--themeColor);
+        font-size: 18px;
+        font-weight: 600;
+
+        @include poCentering();
+        .no-site-icon {
+          font-size: 62px;
+          margin-bottom: 6px;
+        }
+      }
       .site-item {
         display: flex;
         align-items: center;

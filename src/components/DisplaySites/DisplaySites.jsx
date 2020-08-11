@@ -3,6 +3,8 @@ import React, { useContext, useEffect } from "react";
 import "./DisplaySites.scss";
 import { useHistory } from "react-router-dom";
 import { ActionContext, StateContext } from "../../hooks";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGlobe } from "@fortawesome/free-solid-svg-icons";
 import { ChevronRight } from "react-feather";
 import moment from "moment";
 import Loader from "react-loader-spinner";
@@ -13,7 +15,7 @@ function DisplaySites() {
   const { walletAddress, allSites, sitesLoading } = useContext(StateContext);
 
   useEffect(() => {
-    if (walletAddress) {
+    if (walletAddress && allSites && allSites.length === 0) {
       getAllSites(walletAddress);
     }
   }, [walletAddress]);
@@ -39,7 +41,7 @@ function DisplaySites() {
               </button>
             </div>
             <div className="card-content">
-              {allSites &&
+              {allSites && allSites.length > 0 ? (
                 allSites.map((site, id) => (
                   <div
                     className="site-item"
@@ -72,7 +74,18 @@ function DisplaySites() {
                       <ChevronRight />
                     </div>
                   </div>
-                ))}
+                ))
+              ) : (
+                <div className="no-site-container">
+                  <div>
+                    <FontAwesomeIcon
+                      className="no-site-icon"
+                      icon={faGlobe}
+                    ></FontAwesomeIcon>
+                  </div>
+                  <div>No Site Found</div>
+                </div>
+              )}
             </div>
           </>
         ) : (

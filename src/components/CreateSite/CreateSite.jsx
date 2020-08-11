@@ -17,7 +17,7 @@ function CreateSite() {
   const [repositoryLink, setRepositoryLink] = useState("");
   const [repositoryBranch, setRepositoryBranch] = useState("");
   const [buildCommand, setBuildCommand] = useState("");
-  const [packageManager, setPackageManager] = useState("nps");
+  const [packageManager, setPackageManager] = useState("npm");
   const [publishDir, setPublishDir] = useState("");
   const [createSiteLoader, setCreateSiteLoader] = useState(false);
 

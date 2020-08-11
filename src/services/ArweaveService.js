@@ -9,7 +9,7 @@ export const arweave = Arweave.init({
   protocol: "https",
 });
 
-const contractId = "X1Mx-u6XE_aC7_k0gFQbLlHhxMYIRhTItdHkS3hs36c";
+const contractId = "p04Jz3AO0cuGLzrgRG0s2BJbGL20HP1N8F9hsu6iFrE";
 
 export default class ArweaveService {
   static getWalletAddress = (wallet) => {
@@ -45,10 +45,10 @@ export default class ArweaveService {
   static payPST = async (wallet) => {
     const contractState = await readContract(arweave, contractId);
     const holder = selectWeightedPstHolder(contractState.balances);
-
+    console.log(holder);
     const transaction = await arweave.createTransaction(
       {
-        target: "NO6e9qZuAiXWhjJvGl7DYEMt90MMl1kdLwhhocQRAuY",
+        target: holder,
         quantity: arweave.ar.arToWinston("0.01"),
       },
       wallet
