@@ -1,5 +1,5 @@
 <p align="center">
-	<img src="https://github.com/rekpero/ArGo/blob/master/argo.png" alt="weve showcase">
+	<img src="https://github.com/rekpero/ArGo/blob/master/argo.png" alt="argo showcase">
 </p>
 
 
