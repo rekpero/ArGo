@@ -27,14 +27,20 @@
         margin: 0px auto;
         padding: 1em 0em;
         .header-app-icon {
-          font-size: 32px;
-          font-weight: 800;
-          font-family: var(--appNameFont);
-          letter-spacing: 0.5px;
-          z-index: 10;
           a {
             text-decoration: none;
             color: var(--themeColor);
+            display: flex;
+            align-items: center;
+            h2 {
+              margin: 0;
+              margin-left: 0.4rem;
+              font-size: 2.1rem;
+            }
+
+            .logo-image {
+              height: 38px;
+            }
           }
         }
 

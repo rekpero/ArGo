@@ -31,7 +31,12 @@ function Header() {
         <div className="navbar-container">
           <div className="logo-container">
             <Link to="/">
-              <h3 className="logo-name">ArGo.</h3>
+              <img
+                src={require("../../assets/logo-white.png")}
+                alt="logo"
+                className="logo-image"
+              />
+              <h2>ArGo</h2>
             </Link>
           </div>
           <div className="user-profile-container">

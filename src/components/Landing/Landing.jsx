@@ -13,7 +13,14 @@ function Landing() {
         <div className="header-section">
           <div className="header-bar">
             <div className="header-app-icon">
-              <Link to="/">ArGo.</Link>
+              <Link to="/">
+                <img
+                  src={require("../../assets/logo.png")}
+                  alt="logo"
+                  className="logo-image"
+                />
+                <h2>ArGo</h2>
+              </Link>
             </div>
             <div className="header-action-button-container">
               <div className="header-tabs">
