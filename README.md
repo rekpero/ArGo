@@ -1,5 +1,5 @@
-<p align="center">
-	<img src="https://github.com/rekpero/ArGo/blob/master/argo.png" alt="weve showcase">
+<p align="center" >
+	<img src="https://github.com/rekpero/ArGo/blob/master/argo.png" alt="argo showcase">
 </p>
 
 
@@ -25,6 +25,9 @@ To run ArGo developer has to clone backend which you can find here:
 https://github.com/rekpero/ArGo-Backend
 To Run backend seperately follow the README.md
 
-# Demo Link
+## Demo Link
 To see the deomo of the ArGo you visit at:
-https://www.youtube.com/watch?v=68SwcLDteTM
+https://youtu.be/68SwcLDteTM
+
+## Live Link
+https://arweave.net/406oPxsBv38JkpYaYluHY56TrCTLYrLfXm5xwEteP0M
