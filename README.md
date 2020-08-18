@@ -5,11 +5,10 @@
 
 # ArGo
 
-A click away from arweave permaweb
+We are Vercel for Arweave. All your frontend deployment on permaweb in one place.
 ## About Argo
 
-Product for deploying js web apps to the arweave network, for maintaining web app versions and tracking logs at one place.
-Deploy your site by providing minimum details
+Want to only focus on building, Don't worry! We provide you with a simple & powerful way to directly deploy your frontend app to Arweave Permaweb where your app will live for eternity. 
 
 ## Installation
 Follow these easy steps to run ArGo in your machine
